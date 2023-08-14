@@ -1,0 +1,43 @@
+{
+    "name": "Learn JP",
+    "version": "1.0",
+    "description": "Help everyone learn better!",
+    "permissions": [
+        "storage", "tabs"
+    ],
+    "host_permissions": [
+        "https://www.city.edogawa.tokyo.jp/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["https://www.city.edogawa.tokyo.jp/*"],
+            "css": ["css/style.css"],
+            "js": ["js/jquery.min.js","contentScript.js"]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "images/*"
+            ],
+            "matches": [
+                "https://www.city.edogawa.tokyo.jp/*"
+            ]
+        }
+    ],
+    "icons": {
+        "16": "images/learn-jp16x16.png",
+        "48": "images/learn-jp48x48.png",
+        "128": "images/learn-jp128x128.png"
+    },
+    "action": {
+        "default_icon": {
+            "16": "images/learn-jp16x16.png",
+            "24": "images/learn-jp48x48.png",
+            "32": "images/learn-jp128x128.png"
+        },
+        "default_title": "Learn JP\nFor PHP team",
+        "default_popup" : "popup.html"
+    },
+    "manifest_version": 3
+}

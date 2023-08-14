@@ -1,0 +1,90 @@
+#container {
+    /* font-family: "A1 Gothic B"; */
+}
+.wrapper {
+    width: 280px;
+}
+
+.item-body {
+    font-family: "Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    align-items: center;
+    margin: 0px 10px;
+    justify-content: space-between;
+}
+
+.etx-img {
+    display: block;
+    height: auto;
+    vertical-align: top;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.ext-title {
+    font-weight: 600;
+    color: #00a864;
+}
+
+.ext-version {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4cc997;
+}
+
+/* BUTTON */
+.segmented-control {
+    margin: 10px;
+    grid-column: 0.75;
+    grid-row: 0.5;
+    height: 4rem;
+    box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #FFFFFF;;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.segmented-control input {
+    display: none;
+}
+.segmented-control > input:checked + label {
+    transition: all 0.5s ease;
+    color: #6d5dfc;
+}
+.segmented-control__1, .segmented-control__2 {
+    width: 130px;
+    height: 3.6rem;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #9baacf;
+    transition: all 0.5s ease;
+}
+.segmented-control__1:hover, .segmented-control__2:hover{
+    color: #6d5dfc;
+}
+.segmented-control__color {
+    position: absolute;
+    height: 3.4rem;
+    width: 120px;
+    margin-left: 0.3rem;
+    border-radius: 0.8rem;
+    box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #FFFFFF;;
+    pointer-events: none;
+}
+#tab-1:checked ~ .segmented-control__color {
+    transform: translateX(0);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+#tab-2:checked ~ .segmented-control__color {
+    transform: translateX(130px);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.seg-label {
+    margin-left: 6px;
+}
