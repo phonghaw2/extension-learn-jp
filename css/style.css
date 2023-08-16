@@ -10,7 +10,7 @@
 }
 
 
-#ext-content {
+#translator-ext-toast {
     position: fixed;
     bottom: 70px;
     right: 60px;
@@ -28,9 +28,10 @@
     border: 2px solid #2473d7;
     border-radius: 10px;
     background: #c0e9fb;
+    padding-top: 6px;
 }
 
-#ext-content.is-visible {
+#translator-ext-toast.is-visible {
     opacity: 1;
     animation: zoomIn .2s cubic-bezier(.42, 0, .58, 1);
 }
@@ -56,7 +57,7 @@
     object-fit: cover;
 }
 
-#translator-ext-toast {
+#fixed-toast-div {
     z-index: 99999;
     bottom: 0;
     position: fixed;
@@ -65,11 +66,6 @@
     padding: 0;
     border: 0;
     vertical-align: baseline;
-}
-
-#translator-ext-tooltip{
-    min-width: 300px!important;
-    height: 30px!important;
 }
 
 #ext-convert {
@@ -92,7 +88,7 @@
     margin-left: 5px;
 }
 
-#ext-content:after {
+#translator-ext-toast:after {
     content: "";
     position: absolute;
     bottom: -10px;
@@ -101,4 +97,16 @@
     height: 10px;
     background: url(https://i.ibb.co/p0zxY61/chat-aqua.png) no-repeat;
     background-size: contain;
+}
+
+#translator-ext-tooltip {
+    left: 0 !important;
+    top: 0 !important;
+    position: fixed !important;
+    z-index: 100000200 !important;
+    /* width: 300px !important; */
+    /* margin-left: -500px !important; */
+    background-color: #00000000 !important;
+    pointer-events: none !important;
+    display: inline-block;
 }
