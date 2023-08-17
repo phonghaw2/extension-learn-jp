@@ -14,7 +14,8 @@
     position: fixed;
     bottom: 70px;
     right: 60px;
-    width: 300px;
+    min-width: 300px;
+    max-width: 500px;
     font-size: 12px;
     line-height: 22px;
     font-family: 'Roboto';
@@ -73,19 +74,17 @@
     color: #fff;
     font-size: 1rem;
     font-weight: 600;
-    padding: 3px 10px;
     text-shadow: 0 0 2px #000;
-    margin-left: 5px;
+    margin: 3px 15px;
 }
 
 #ext-translate {
-    font-family: "Gothic MB101 Bold", YakuHanJP;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     color: #000;
     font-size: 1rem;
     font-weight: 600;
-    padding: 3px 10px;
     text-shadow: 0 0 2px #fff;
-    margin-left: 5px;
+    margin: 3px 15px;
 }
 
 #translator-ext-toast:after {

@@ -5,14 +5,17 @@ window.onload =  function() {
     var mouseoverInterval = null;
     var translateX;
     var translateY;
+    var translateWidth;
+    var convertWidth;
     // Render Toast in bottom
     renderToast();
     renderTooltip();
 
     $("img").on( "mouseover", function(e) {
+        hideToast();
         let context = this.alt;
         if (context) {
-            mouseoverInterval = setInterval(async function(){
+            mouseoverInterval = window.setTimeout(async function(){
                 await runTranslatorToast(context);
                 await runCovert(context);
                 // Show toast when ready
@@ -22,7 +25,7 @@ window.onload =  function() {
     });
 
     $("img").on( "mouseout", function(e) {
-        clearInterval(mouseoverInterval);
+        window.clearTimeout(mouseoverInterval);
         // Hide toast
         hideToast();
     });
@@ -30,13 +33,18 @@ window.onload =  function() {
     // Selected text content to translate it
     bodyWrapper.addEventListener("mouseup" , (e) => {
         const selectedText = getSelectionText();
+        hideToast();
 
         if (selectedText && selectedText.length > 0) {
             const selectedNode = getSelectionNode();
             const getRange = selectedNode.getRangeAt(0);
             const selectedRect = getRange.getBoundingClientRect();
 
-            runTranslatorTooltip(selectedRect, selectedText, e.clientY, e.clientX);
+            // runTranslatorTooltip(selectedRect, selectedText, e.clientY, e.clientX);
+            // Aqua will show it =))
+            runTranslatorToast(selectedText);
+            runCovert(selectedText);
+            showToast();
         }
     });
 
@@ -71,9 +79,8 @@ window.onload =  function() {
     function renderToast() {
         let toastInnerHTML = `
             <div id="translator-ext-toast">
-                <span id="ext-translate">example</span>
-                <br/>
-                <span id="ext-convert">サンプルコンテンツ</span>
+                <p id="ext-translate"></p>
+                <p id="ext-convert"></p>
             </div>
             <div id="aqua">
                 <img src="https://images3.alphacoders.com/805/805497.png" class="aqua_images"> 
@@ -102,19 +109,16 @@ window.onload =  function() {
         const response = await fetch( APIurl );
         const result = await response.json();
 
-        tooltipDiv.innerHTML = result[0][0][0];
-        // Set style
-        translateX = left + (width / 2 - tooltipDiv.offsetWidth / 2) + 'px';
-        translateY = bottom + 'px';
-        tooltipDiv.style.display = "block";
-        // tooltipDiv.style.position = "absolute";
-        // tooltipDiv.style.background = "black";
-        // tooltipDiv.style.padding = "4px";
-        // tooltipDiv.style.height = height + "px";
-        // tooltipDiv.style.top = "0px";
-        // tooltipDiv.style.left = left + (width / 2 - tooltipDiv.offsetWidth / 2) + "px";
-        tooltipDiv.style.width = width + "px";
-        tooltipDiv.style.transform = `translate(${translateX}, ${translateY})`;
+        if (result[0][0][0]) {
+            tooltipDiv.innerHTML = result[0][0][0];
+            // Set style
+            translateX = left + (width / 2 - tooltipDiv.offsetWidth / 2) + 'px';
+            translateY = bottom + 'px';
+            tooltipDiv.style.display = "block";
+            tooltipDiv.style.transform = `translate(${translateX}, ${translateY})`;
+        } else {
+            console.log("No results returned from api https://translate.googleapis.com");
+        }
     }
 
     async function runTranslatorToast(alt) {
@@ -124,7 +128,11 @@ window.onload =  function() {
         const response = await fetch( APIurl );
         const result = await response.json();
 
-        translate.innerHTML = result[0][0][0];
+        if (result[0][0][0]) {
+            translate.innerHTML = result[0][0][0];
+        } else {
+            console.log("No results returned from api https://translate.googleapis.com");
+        }
     }
 
     /*! Japanese Hiragana Conversion API
@@ -159,10 +167,25 @@ window.onload =  function() {
     }
 
     function hideToast() {
+        $( "#ext-translate" ).html();
+        $( "#ext-convert" ).html();
         $( "#translator-ext-toast" ).removeClass("is-visible");
     }
 
     function showToast() {
+        // setWidthToastByText();
         $( "#translator-ext-toast" ).addClass("is-visible");
+    }
+
+    function setWidthToastByText() {
+        translateWidth = $('#ext-translate')[0].offsetWidth;
+        convertWidth = $('#ext-convert')[0].offsetWidth;
+
+        if (translateWidth > convertWidth && translateWidth > 300) {
+            $( "#translator-ext-toast" )[0].style.width = translateWidth;
+        }
+        if (convertWidth > translateWidth && convertWidth > 300) {
+            $( "#translator-ext-toast" )[0].style.width = convertWidth;
+        }
     }
 }
