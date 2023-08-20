@@ -1,90 +1,42 @@
-#container {
-    /* font-family: "A1 Gothic B"; */
-}
-.wrapper {
-    width: 280px;
+html {
+    background-color: #f7f7f7;
 }
 
-.item-body {
-    font-family: "Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-    display: flex;
-    align-items: center;
-    margin: 0px 10px;
-    justify-content: space-between;
-}
-
-.etx-img {
-    display: block;
-    height: auto;
-    vertical-align: top;
-    font-size: 13px;
-    font-weight: 300;
-}
-
-.ext-title {
-    font-weight: 600;
-    color: #00a864;
-}
-
-.ext-version {
-    font-size: 12px;
-    font-weight: 600;
-    color: #4cc997;
-}
-
-/* BUTTON */
-.segmented-control {
-    margin: 10px;
-    grid-column: 0.75;
-    grid-row: 0.5;
-    height: 4rem;
-    box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #FFFFFF;;
-    border-radius: 1rem;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-.segmented-control input {
+img {
     display: none;
 }
-.segmented-control > input:checked + label {
-    transition: all 0.5s ease;
-    color: #6d5dfc;
-}
-.segmented-control__1, .segmented-control__2 {
-    width: 130px;
-    height: 3.6rem;
-    font-size: 16px;
+
+.wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color: #9baacf;
-    transition: all 0.5s ease;
-}
-.segmented-control__1:hover, .segmented-control__2:hover{
-    color: #6d5dfc;
-}
-.segmented-control__color {
-    position: absolute;
-    height: 3.4rem;
-    width: 120px;
-    margin-left: 0.3rem;
-    border-radius: 0.8rem;
-    box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #FFFFFF;;
-    pointer-events: none;
-}
-#tab-1:checked ~ .segmented-control__color {
-    transform: translateX(0);
-    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-#tab-2:checked ~ .segmented-control__color {
-    transform: translateX(130px);
-    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    justify-content: space-between;
+    /* position: relative;
+    z-index: -1;
+    opacity: .075;
+    background: url(../images//bg_visual.png); */
 }
 
-.seg-label {
-    margin-left: 6px;
+.label-target {
+    font-size: .7rem;
+    border-width: 5px;
+    padding: 10px;
+    border-image-source: url(../images/btnborderdk.png);
+    border-image-repeat: stretch;
+    border-image-slice: 40;
+    border-image-width: 18px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 6px;
+    font-weight: 400;
+    text-align: center;
+    font-family: Roboto,sans-serif;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+.is-show {
+    display: block !important;
+}
+
+.is-choose {
+    opacity: 1 !important;
 }

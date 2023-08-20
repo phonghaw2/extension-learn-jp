@@ -5,6 +5,9 @@
     "permissions": [
         "storage", "tabs"
     ],
+    "background": {
+        "service_worker": "js/background.js"
+    },
     "host_permissions": [
         "https://www.city.edogawa.tokyo.jp/*"
     ],

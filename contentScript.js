@@ -7,9 +7,12 @@ window.onload =  function() {
     var translateY;
     var translateWidth;
     var convertWidth;
+    var convertTo;
+
     // Render Toast in bottom
     renderToast();
     renderTooltip();
+    getStorage();
 
     $("img").on( "mouseover", function(e) {
         hideToast();
@@ -139,6 +142,9 @@ window.onload =  function() {
         https://labs.goo.ne.jp/api/en/hiragana-translation/
     */
     async function runCovert(alt) {
+        if (!convertTo) {
+            getStorage();
+        }
         const convertSpan = document.getElementById("ext-convert");
         const rawResponse = await fetch('https://labs.goo.ne.jp/api/hiragana', {
             method: 'POST',
@@ -150,7 +156,7 @@ window.onload =  function() {
                 "app_id"        : "a5baf7452dfd059981bc587b4f4067d0a0ac85a6c08d0b3295d79bac4fd203a4",
                 "request_id"    : "record003",
                 "sentence"      : `${alt}`,
-                "output_type"   : "hiragana"
+                "output_type"   : convertTo
             })
         });
 
@@ -188,4 +194,18 @@ window.onload =  function() {
             $( "#translator-ext-toast" )[0].style.width = convertWidth;
         }
     }
+
+    function getStorage() {
+        chrome.storage.sync.get(['convertTo'], (result) => {
+            if (result.convertTo) convertTo = result.convertTo;
+        })
+    }
+
+    chrome.storage.onChanged.addListener((changes, namespace) => {
+        if (namespace === 'sync') {
+            if (changes.convertTo) {
+                convertTo = changes.convertTo.newValue;
+            }
+        }
+    })
 }
