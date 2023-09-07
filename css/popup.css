@@ -1,9 +1,11 @@
 html {
     background-color: #f7f7f7;
+    font-size: 1.125rem;
 }
 
-img {
-    display: none;
+#img-hiragana, #img-katakana {
+    width: 320px;
+    display:none;
 }
 
 .wrapper {
@@ -39,4 +41,95 @@ img {
 
 .is-choose {
     opacity: 1 !important;
+}
+
+@media only screen and (min-width: 1280px) {
+    #container {
+        font-size: 18px;
+        font-size: 1.125rem;
+    }
+}
+
+img {
+    vertical-align: bottom;
+    border-style: none;
+}
+
+.module-modal {
+    cursor: pointer;
+}
+
+.module-letters-block .letters-list li {
+    width: 45px;
+    margin: 5px;
+}
+
+.module-letters-block {
+    width: 100%;
+}
+#lesson-footer #mega-footer .mega-foot-body ul li, address, blockquote, body, dl, figure, form, hr, iframe, ol, p, pre, table, ul {
+    margin: 0;
+}
+ol, ul {
+    padding: 0;
+    list-style: none;
+}
+
+.letters-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.module-letters .module-letters-content .module-letters-block .letters-list li img {
+    -webkit-transition: .2s;
+    transition: .2s;
+    opacity: 1;
+    border: 2px solid #67caa4;
+}
+
+#container img, #module-modal img, .color-box dt.fig span {
+    width: 100%;
+}
+
+.module-letters-block .letters-list li img {
+    -webkit-transition: .2s;
+    transition: .2s;
+    opacity: 1;
+    border: 2px solid #67caa4;
+}
+
+.module-letters-block .letters-list li img:hover {
+    -webkit-transition: .2s;
+    transition: .2s;
+    opacity: .6;
+    border: 2px solid #42bc8d;
+}
+
+.figure-detail{
+    position: absolute;
+    background: #eaf2ee;
+    transform: translate(40%,130%);
+}
+
+.figure-detail img {
+    width: 180px!important;
+}
+
+#module-overlay {
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    background-color: rgba(0,0,0,.65);
 }
