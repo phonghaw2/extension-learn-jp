@@ -11,9 +11,9 @@
 
 
 #translator-ext-toast {
-    position: fixed;
-    bottom: 70px;
-    right: 60px;
+    position: absolute;
+    bottom: 60px;
+    right: 52px;
     min-width: 300px;
     max-width: 500px;
     font-size: 12px;
@@ -30,6 +30,7 @@
     border-radius: 10px;
     background: #c0e9fb;
     padding-top: 6px;
+    height: fit-content;
 }
 
 #translator-ext-toast.is-visible {
@@ -37,9 +38,9 @@
     animation: zoomIn .2s cubic-bezier(.42, 0, .58, 1);
 }
 #aqua {
-    position: fixed;
-    right: 15px;
-    bottom: 20px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
     display: block;
     width: 56px;
     height: 56px;
@@ -67,6 +68,8 @@
     padding: 0;
     border: 0;
     vertical-align: baseline;
+    height: fit-content;
+    width: fit-content;
 }
 
 #ext-convert {

@@ -208,4 +208,39 @@ window.onload =  function() {
             }
         }
     })
+
+    var chooseEle;
+    $( "#aqua" ).on( "mousedown", function(e) {
+        chooseEle = document.getElementById("fixed-toast-div");
+        document.onmousemove = (e) => {
+            if (chooseEle) {
+                chooseEle.style.left = (e.clientX + 32)  + 'px';
+                chooseEle.style.top = (e.clientY + 32) + 'px';
+            }
+        }
+        document.onmouseup = (e) => {
+            chooseEle = null;
+        }
+    });
+
+    // Another way to move aqua =))
+    
+    // const div = document.querySelector('#fixed-toast-div');
+    // const aqua = document.querySelector('#aqua');
+    // let offsetX, offsetY;
+
+    // const move = (e) => {
+    //     div.style.left = `${e.clientX - offsetX}px`;
+    //     div.style.top = `${e.clientY - offsetY}px`;
+    // }
+    // aqua.addEventListener("mousedown", (e) => {
+    //     offsetX = e.clientX - div.offsetLeft;
+    //     offsetY = e.clientY - div.offsetTop;
+    //     document.addEventListener("mousemove", move);
+    // });
+
+    // document.addEventListener("mouseup", () => {
+    //     document.removeEventListener("mousemove", move);
+    // })
+
 }
