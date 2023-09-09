@@ -38,7 +38,7 @@ window.onload =  function() {
         const selectedText = getSelectionText();
         hideToast();
 
-        if (selectedText && selectedText.length > 0) {
+        if (selectedText && selectedText.length > 0 && selectedText.length < 100) {
             const selectedNode = getSelectionNode();
             const getRange = selectedNode.getRangeAt(0);
             const selectedRect = getRange.getBoundingClientRect();
@@ -112,8 +112,11 @@ window.onload =  function() {
         const response = await fetch( APIurl );
         const result = await response.json();
 
-        if (result[0][0][0]) {
-            tooltipDiv.innerHTML = result[0][0][0];
+        if (result[0].length > 0) {
+            tooltipDiv.innerHTML = '';
+            for (let i = 0; i < result[0].length; i++) {
+                tooltipDiv.innerHTML += result[0][i][0];
+            }
             // Set style
             translateX = left + (width / 2 - tooltipDiv.offsetWidth / 2) + 'px';
             translateY = bottom + 'px';
@@ -131,8 +134,12 @@ window.onload =  function() {
         const response = await fetch( APIurl );
         const result = await response.json();
 
-        if (result[0][0][0]) {
-            translate.innerHTML = result[0][0][0];
+        if (result[0].length > 0) {
+            let context = '';
+            for (let i = 0; i < result[0].length; i++) {
+                context += result[0][i][0];
+            }
+            translate.innerHTML = context.replace("\n\n", "<br/>");
         } else {
             console.log("No results returned from api https://translate.googleapis.com");
         }
@@ -179,20 +186,26 @@ window.onload =  function() {
     }
 
     function showToast() {
-        // setWidthToastByText();
+        setWidthToastByText();
         $( "#translator-ext-toast" ).addClass("is-visible");
     }
 
     function setWidthToastByText() {
-        translateWidth = $('#ext-translate')[0].offsetWidth;
-        convertWidth = $('#ext-convert')[0].offsetWidth;
+        let translateLength = $('#ext-translate')[0].innerText.length;
+        if (translateLength > 100) {
+            $( "#translator-ext-toast" )[0].style.width = '400px';
+        } else {
+            $( "#translator-ext-toast" )[0].style.width = '300px';
+        }
+        // translateWidth = $('#ext-translate')[0].offsetWidth;
+        // convertWidth = $('#ext-convert')[0].offsetWidth;
 
-        if (translateWidth > convertWidth && translateWidth > 300) {
-            $( "#translator-ext-toast" )[0].style.width = translateWidth;
-        }
-        if (convertWidth > translateWidth && convertWidth > 300) {
-            $( "#translator-ext-toast" )[0].style.width = convertWidth;
-        }
+        // if (translateWidth > convertWidth && translateWidth > 300) {
+        //     $( "#translator-ext-toast" )[0].style.width = translateWidth;
+        // }
+        // if (convertWidth > translateWidth && convertWidth > 300) {
+        //     $( "#translator-ext-toast" )[0].style.width = convertWidth;
+        // }
     }
 
     function getStorage() {
