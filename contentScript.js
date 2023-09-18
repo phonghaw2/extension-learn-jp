@@ -38,7 +38,9 @@ window.onload =  function() {
         const selectedText = getSelectionText();
         hideToast();
 
-        if (selectedText && selectedText.length > 0 && selectedText.length < 100) {
+        // Replace tabsize and nl2br
+        let text = selectedText.replace(/(\t)|(\n)/g, "");
+        if (text && text.length > 0 && text.length < 100) {
             const selectedNode = getSelectionNode();
             const getRange = selectedNode.getRangeAt(0);
             const selectedRect = getRange.getBoundingClientRect();
@@ -256,4 +258,7 @@ window.onload =  function() {
     //     document.removeEventListener("mousemove", move);
     // })
 
+    function detectJapanese(text) {
+        return text.match(/[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/)
+    }
 }
