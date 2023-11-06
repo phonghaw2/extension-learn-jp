@@ -130,6 +130,13 @@ window.onload =  function() {
     }
 
     async function runTranslatorToast(alt) {
+        navigator.clipboard.writeText("「" + alt + "」");
+        // Create a new SpeechSynthesisUtterance object
+        let utterance = new SpeechSynthesisUtterance(alt);
+        // Set language to speak
+        utterance.lang = "ja-JP";
+        // Speak the utterance
+        speechSynthesis.speak(utterance);
         const translate = document.getElementById("ext-translate");
         const query = encodeURI(alt);
         const APIurl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ja&tl=vi&dt=t&q=${query}`;
@@ -139,7 +146,7 @@ window.onload =  function() {
         if (result[0].length > 0) {
             let context = '';
             for (let i = 0; i < result[0].length; i++) {
-                context += result[0][i][0];
+                context += result[0][i][0] + "<br/>" + alt + "<br/>";
             }
             translate.innerHTML = context.replace("\n\n", "<br/>");
         } else {
