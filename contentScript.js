@@ -130,13 +130,7 @@ window.onload =  function() {
     }
 
     async function runTranslatorToast(alt) {
-        navigator.clipboard.writeText("「" + alt + "」");
-        // Create a new SpeechSynthesisUtterance object
-        let utterance = new SpeechSynthesisUtterance(alt);
-        // Set language to speak
-        utterance.lang = "ja-JP";
-        // Speak the utterance
-        speechSynthesis.speak(utterance);
+        speakText(alt);
         const translate = document.getElementById("ext-translate");
         const query = encodeURI(alt);
         const APIurl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ja&tl=vi&dt=t&q=${query}`;
@@ -153,6 +147,15 @@ window.onload =  function() {
             console.log("No results returned from api https://translate.googleapis.com");
         }
     }
+
+    function speakText (context) { 
+        // Create a new SpeechSynthesisUtterance object
+        let utterance = new SpeechSynthesisUtterance(context);
+        // Set language to speak
+        utterance.lang = "ja-JP";
+        // Speak the utterance
+        speechSynthesis.speak(utterance);
+     }
 
     /*! Japanese Hiragana Conversion API
         https://labs.goo.ne.jp/api/en/hiragana-translation/
