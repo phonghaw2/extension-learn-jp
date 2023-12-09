@@ -19,7 +19,7 @@
     line-height: 22px;
     font-family: 'Roboto';
     font-weight: 500;
-    opacity: 0;
+    visibility: hidden;
     box-shadow: 1px 1px 100px 2px rgb(0 0 0 / 22%);
     -webkit-font-smoothing: antialiased;
     -webkit-transition: all .2s ease-out;
@@ -33,7 +33,7 @@
 }
 
 #translator-ext-toast.is-visible {
-    opacity: 1;
+    visibility: visible;
     animation: zoomIn .2s cubic-bezier(.42, 0, .58, 1);
 }
 #aqua {
